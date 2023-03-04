@@ -1,0 +1,64 @@
+<audio id="audio" controls style="display:none">
+  <source src="" type="audio/wav"> Your browser does not support the audio element.
+</audio>
+<script>
+document.addEventListener('keydown', function(e) {
+  if (e.keyCode == 87) {
+    document.getElementById('audio').play();
+  }
+});
+</script>
+<script>
+  window.addEventListener("wheel", (event) => {
+    // small increments for smoother zooming
+    const delta = event.wheelDelta / 120 / 10;
+    var mycam = document.getElementById("camera").getAttribute("camera");
+    var finalZoom =
+      document.getElementById("camera").getAttribute("camera").zoom + delta;
+
+    // limiting the zoom
+    if (finalZoom < 0.5) finalZoom = 0.5;
+    if (finalZoom > 2) finalZoom = 2;
+    mycam.zoom = finalZoom;
+
+    document.getElementById("camera").setAttribute("camera", mycam);
+  });
+</script>
+<!-- A-Frame 0.7.1 -->
+<!-- <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script> -->
+
+<!-- A-Frame 0.8.* -->
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+
+<!-- A-Frame Master -->
+<!-- <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script> -->
+
+<!-- A-Frame Extras -->
+<script src="https://unpkg.com/aframe-extras@4.1.2/dist/aframe-extras.min.js"></script>
+
+<!-- A-Frame Physics -->
+<script src="https://unpkg.com/aframe-physics-system@3.1.2/dist/aframe-physics-system.min.js"></script>
+
+<!-- SCENE -->
+<a-scene physics="debug: false; restitution: 0;" background="color: powderblue;">
+  
+  <!-- CAMERA -->
+<a-entity id="rig" movement-controls kinematic-body jump-ability>
+    <a-entity camera look-controls="pointerLockEnabled: true;" position="0 4 0"></a-entity>
+  </a-entity>  
+    <a-box color="black" height="1" width="25" depth="25" static-body position="0 -0.5 0"></a-box>
+    <a-box color="black" height="1" width="25" depth="25" dynamic-body position="0 10.5 0"></a-box>
+    <a-box color="black" height="10" width="1" depth="1" static-body position="12 5 12"></a-box>
+    <a-box color="black" height="10" width="1" depth="1" static-body position="-12 5 12"></a-box>
+    <a-box color="black" height="10" width="1" depth="1" static-body position="12 5 -12"></a-box>
+    <a-box color="black" height="10" width="1" depth="1" static-body position="-12 5 -12"></a-box>
+    <a-box color="blue" height="10" width="1" depth="23" material="opacity: 0.25" dynamic-body position="12 5 0"></a-box>
+    <a-box color="blue" height="10" width="1" depth="23" material="opacity: 0.25" dynamic-body position="-12 5 0"></a-box>
+    <a-box color="blue" height="10" width="23" depth="1" material="opacity: 0.25" dynamic-body position="0 5 12"></a-box>
+    <a-box color="blue" height="10" width="23" depth="1" material="opacity: 0.25" dynamic-body position="0 5 -12"></a-box>
+    <a-entity gltf-model="https://raw.githubusercontent.com/321dev123/src/main/long_furby_19th_sept_2020.glb" position="-3 0.6 -3" rotation="90 -315 0" scale="0.3 0.3 0.3" dynamic-body=""></a-entity> 
+    <a-entity gltf-model="https://raw.githubusercontent.com/321dev123/src/main/untitled.glb" position="3 0 -3" rotation="0 315 0" scale="3 3 3" dynamic-body="mass: 10"></a-entity> 
+    <a-entity gltf-model="https://raw.githubusercontent.com/321dev123/src/main/female.glb" position="0 0.6 -3" rotation="0 0 0" scale="0.275 0.275 0.275" dynamic-body="mass: 10"></a-entity>   
+    <a-entity gltf-model="https://raw.githubusercontent.com/321dev123/src/main/shit_e.glb" position="0 -50 0" scale="100 10 100" static-body="mass: 10"></a-entity> 
+  
+</a-scene>
